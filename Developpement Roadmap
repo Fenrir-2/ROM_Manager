@@ -1,0 +1,83 @@
+ 
+
+App Name : ROM Manager X.y (X => Major version, y => minor version)
+ 
+Bouton du bas: Launch the selected ROM
+Colonne marquée rouge: File name
+Colonne marquée verte: Console (thanks to file format) 
+Colonne marquée violette: Last launch of this ROM
+Bouton marqué marron: "File Menu", set settings, like ROM folder/Emulator path 
+Bouton marqué bleu: Has no current use. (Should it stay here?). 
+ 
+Major engineering techniques:  
+ 
+ROMs detection system: Watch for dirent.h use/portability. Based on files extension. 
+ 
+http://qt-project.org/doc/qt-4.8/qtableview.html 
+ 
+Qt powered. Watch for 5th version tutorial/differences with 4.8.1 
+ 
+FUSA supports depends on emulators themselves. 
+ 
+If modifying emulator systems, FUSA has to be manually made. Can be simple via SDL inputs system, but check for SFML/QT joystick control system. Check for open source FUSA API. 
+ 
+Relying on Linux command-line like a shell script using exec command family. 
+ 
+Relying on file's directory (emulators & ROMs) using user specific config files in hidden folders, like using ~/.local folder. 
+Using .config files working as .txt. 
+Use one for emulators path, and another one for rom path and launch time. 
+Can also try a game-specific file system. 
+See note related to creating UID manually. 
+ 
+Config files architecture: Watch for XML support, or txt files! 
+ 
+Relying on some certain emulators for command-line arguments passing. OR modifying emulators source code to use ROM MANAGER as a front end  
+ 
+Each ROM should be able to be launched with user-defined options according to the emulator that is used. 
+ 
+For date, use system-provided date. Check GNU/Linux-specific command. 
+http://stackoverflow.com/questions/8343676/how-to-get-current-date-and-time . 
+If no date, then say "Not launched yet". 
+ 
+Filename Display: Remove extension, and use it for emulator system detection. 
+ 
+FUTURE FEATURES: ZIP support. 
+Could be easy: unGzip everything, target the ROM and launch it. Now what if there's two ROMs or more? Then ask user which one to launch. Finally, zip that shit up! 
+ 
+ROMs classification: 
+ 
+For .bin or .iso ROMs, ask user for which emulator to choose. 
+Useful resource
+ 
+Sega Genesis/MS emulator: Kega Fusion. 
+Sega Saturn: Unknown 
+Sega Dreamcast: Unknown 
+N64 emulator: Mupen64plus  
+GC/Wii: Dolphin x86_64 
+NES/SNES: Unknown 
+DOS: Currently unsupported due to lack of knowledge 
+GB/GBC/GBA:Unknown 
+DS/DSi/DSi XL:Unknown 
+Atari: Unknown 
+MAME: Unknown 
+Playstation 1: Is ePSXe available? 
+Playstation 2: Is an emulator available? 
+PSP: See PS2. 
+ 
+Window-specific version: Stay portable, all the files in the same folder. Watch for compiler-specific #define like #define WIN32-GCC. Qt4 is MinGW-based. Use Code::Blocks with Visual Studio shortcut if necessary. Prefer Qt Creator. 
+ 
+Programming steps: 
+Every steps since the beginning has to be pushed to GitHub to a dev branch until step 4.a/! 
+/!\MARK ALL THE EMULATORS AS MANDATORY DEPENDENCIES/!\
+1/ Functional launch of a particular ROMs through a command -- WITH OPTION. 
+2/ Functional launch of every ROM through a command with modulars names 
+3/ Functional recognition of a certain type of ROM in a single folder. 
+4/ Functional recognition of every type of ROMs in a single folder. Handling of the  the .iso/.bin issue. BUG FIXING TO DO HERE BEFORE 4.a/. 
+4.a/ First release on Arch User Repo :-) 
+BEFORE RELEASING MAKE SURE IT IS DAMN STABLE!Since here, every update made to the local files has to be pushed to AUR -- IF STABLE ONLY! I suggest maintaining a stable and a dev branch. 
+5/ First implementation of config files. 
+6/ First try of a GUI. 
+7/ Bug fixes and global optimization. 
+8/ Search for ROMs through every available folder. 
+9/ Enlarging ROMs types support (DOS/PSX/DSx etc)
+
